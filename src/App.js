@@ -6,10 +6,12 @@ import Question from './Question';
 
 
 function App() {
-  const [questions, setQuestions] = useState(null)
-  const [playing, setPlaying] = useState(false)
+  const [questions, setQuestions] = useState(null);
+  const [playing, setPlaying] = useState(false);
   const [score, setScore] = useState(0);
-  const [counter, setCounter] = useState(0)
+  const [counter, setCounter] = useState(0);
+  const [revealQuestion, setRevealQuestion] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
 
   const startRound = () => {
       let randomIdx;
@@ -20,22 +22,32 @@ function App() {
       }
       while (roundQuestions.length < 10) {
         randomIdx = getRandomIdx();
-        if (previousIdx.includes(randomIdx)) randomIdx = getRandomIdx();
+        while (previousIdx.includes(randomIdx)) randomIdx = getRandomIdx();
         previousIdx.push(randomIdx);
         roundQuestions.push(questionsData[randomIdx]);
       }
       setQuestions(roundQuestions);
       setPlaying(true);
-    }
+      setRevealQuestion(true);
+  }
 
-    const handleAnswer = (result) => {
-      if (result) {
-        setScore(score+1)
-      }
-      let newQuestion = counter + 1
-      console.log(newQuestion)
-      setCounter(2)
+  const handleAnswer = (result) => {
+    setRevealQuestion(false);
+    if (result) {
+      setScore(score+1);
     }
+    if (counter < 9) setCounter(counter+1)
+    else setGameOver(true);
+  }
+
+  const resetGame = () => {
+    setQuestions(null);
+    setPlaying(false);
+    setScore(0);
+    setCounter(0);
+    setRevealQuestion(false);
+    setGameOver(false);
+  }
   
 
   return (
@@ -48,7 +60,16 @@ function App() {
         <button onClick={() => startRound()}>Click here to start a new round</button>
         </>
         :
-        <Question question={questions[counter]} handleAnswer={handleAnswer}/>
+        gameOver ? 
+        <>
+        <p>Game Over! You got {score} out of 10 questions correct.</p>
+        <button onClick={resetGame}>Play Again?</button>
+        </>
+        :
+        revealQuestion ?
+          <Question question={questions[counter]} handleAnswer={handleAnswer}/>
+          :
+          <button onClick={() => setRevealQuestion(true)}>Next Question</button>
         }
       </header>
     </div>

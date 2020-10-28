@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './App.css';
 
 const Question = ({ question, handleAnswer }) => {
     const [choices, setChoices] = useState(['', '', '', ''])
@@ -24,13 +25,16 @@ const Question = ({ question, handleAnswer }) => {
         <div>
             {question.question}
         </div>
+        <div className="choices-grid">
         {!showAnswers ?
-        <button onClick={() => getAnswers()}>Reveal Answers</button>
+        getAnswers()
+        // <button onClick={getAnswers}>Reveal Answers</button>
         :
-        choices.map(choice => {
-            return <button onClick={handleClick(choice)}>{choice}</button>
+        choices.map((choice, idx) => {
+            return <button id={idx} className="choices" onClick={() => handleClick(choice)}>{choice}</button>
         })
         }
+        </div>
         </>
         
      );
