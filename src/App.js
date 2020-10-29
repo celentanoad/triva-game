@@ -12,6 +12,7 @@ function App() {
   const [counter, setCounter] = useState(0);
   const [revealQuestion, setRevealQuestion] = useState(false);
   const [gameOver, setGameOver] = useState(false);
+  const [message, setMessage] = useState(null);
 
   const startRound = () => {
       let randomIdx;
@@ -31,10 +32,13 @@ function App() {
       setRevealQuestion(true);
   }
 
-  const handleAnswer = (result) => {
+  const handleAnswer = (guess, corrrectAnswer) => {
     setRevealQuestion(false);
-    if (result) {
+    if (guess === corrrectAnswer) {
       setScore(score+1);
+      setMessage(`That's right!`)
+    } else {
+      setMessage(`Wrong! The correct answer is ${corrrectAnswer}`)
     }
     if (counter < 9) setCounter(counter+1)
     else setGameOver(true);
@@ -47,13 +51,14 @@ function App() {
     setCounter(0);
     setRevealQuestion(false);
     setGameOver(false);
+    setMessage(null);
   }
   
 
   return (
     <div className="App">
       <header className="App-header">
-        <div>Score: {score}</div>
+        <div className="score">Score: {score}</div>
         {!playing ?
         <>
         <h2>Let's play trivia!</h2>
@@ -69,7 +74,10 @@ function App() {
         revealQuestion ?
           <Question question={questions[counter]} handleAnswer={handleAnswer}/>
           :
+          <>
+          <p>{message}</p>
           <button onClick={() => setRevealQuestion(true)}>Next Question</button>
+          </>
         }
       </header>
     </div>

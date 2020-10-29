@@ -4,6 +4,7 @@ import './App.css';
 const Question = ({ question, handleAnswer }) => {
     const [choices, setChoices] = useState(['', '', '', ''])
     const [showAnswers, setShowAnswers] = useState(false);
+    const [message, setMessage] = useState(null)
 
     const getAnswers = () => {
         setShowAnswers(true)
@@ -17,7 +18,12 @@ const Question = ({ question, handleAnswer }) => {
     }
 
     const handleClick = (choice) => {
-        handleAnswer(choice === question.correct)
+        // if (choice === question.correct) {
+        //     setMessage('You got it right!')
+        // } else {
+        //     setMessage(`Wrong! The correct answer is ${question.correct}`)
+        // }
+        handleAnswer(choice, question.correct)
     }
 
     return ( 
@@ -35,6 +41,7 @@ const Question = ({ question, handleAnswer }) => {
         })
         }
         </div>
+        <p>{message}</p>
         </>
         
      );
