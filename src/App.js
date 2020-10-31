@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 // const questionsData = require('./data/Apprentice_TandemFor400_Data.json');
-import questionsData from './data/Apprentice_TandemFor400_Data.json';
+import questionsData from './data/questionData.json';
 import Question from './Question';
 
 
