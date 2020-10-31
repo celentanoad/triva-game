@@ -33,6 +33,11 @@ button {
   outline: none;
 }
 
+.question {
+  margin: 20px;
+  text-align: center;
+}
+
 .choices-grid {
   display: grid;
   grid-template-columns: 50% 50%;

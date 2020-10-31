@@ -22,7 +22,7 @@ const Question = ({ question, handleAnswer }) => {
 
     return ( 
         <>
-        <div>
+        <div className="question">
             {question.question}
         </div>
         <div className="choices-grid">
