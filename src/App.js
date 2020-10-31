@@ -56,19 +56,19 @@ function App() {
   
 
   return (
-    <div className="App">
-      <header className="App-header">
+    
+      <div className="App">
         <div className="score">Score: {score}</div>
         {!playing ?
         <>
         <h2>Let's play trivia!</h2>
-        <button onClick={() => startRound()}>Click here to start a new round</button>
+        <button className="start-btn" onClick={() => startRound()}>Click here to start a new round</button>
         </>
         :
         gameOver ? 
         <>
         <p>Game Over! You got {score} out of 10 questions correct.</p>
-        <button onClick={resetGame}>Play Again?</button>
+        <button className="start-btn" onClick={resetGame}>Play Again?</button>
         </>
         :
         revealQuestion ?
@@ -76,11 +76,11 @@ function App() {
           :
           <>
           <p>{message}</p>
-          <button onClick={() => setRevealQuestion(true)}>Next Question</button>
+          <button className="start-btn" onClick={() => setRevealQuestion(true)}>Next Question</button>
           </>
         }
-      </header>
-    </div>
+      </div>
+    
   );
 }
 

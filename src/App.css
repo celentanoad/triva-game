@@ -1,33 +1,36 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  background-color: rgb(33, 50, 26);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: rgb(230, 158, 142);
   margin: 10px;
 }
 
 .score {
   position: fixed;
   margin-bottom: 600px; 
+}
+
+.start-btn {
+  background-color: rgb(255, 236, 47);
+  border: rgb(255, 236, 47) solid 5px;
+  border-radius: 15px;
+  color: rgb(33, 50, 26);
+  font-weight: 600;
+  padding: 15px;
+}
+
+.start-btn:hover {
+  border: rgb(255, 252, 251) solid 5px;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
 }
 
 .choices-grid {
@@ -38,19 +41,22 @@
 
 .choices {
   margin: 15px;
-  height: 100px;
-  width: 150px;
-  font-size: larger;
+  height: 150px;
+  width: 300px;
+  font-size: 20px;
 	opacity: 1;
 	animation-name: fadeInOpacity;
 	animation-iteration-count: 1;
 	animation-timing-function: ease-in;
-	animation-duration: 1.5s;
+  animation-duration: 1.5s;
+  background-color: rgb(255, 252, 251);
+  border: rgb(255, 252, 251) solid 5px;
 }
 
 .choices:hover {
-  border: lightblue solid 5px;
-
+  border: rgb(255, 236, 47) solid 5px;
+  font-size: 30px;
+  font-weight: 600;
 }
 
 @keyframes fadeInOpacity {
